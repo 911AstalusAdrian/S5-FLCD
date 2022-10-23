@@ -33,7 +33,15 @@ class SymbolTable:
                     else:
                         self.constants.insert(token)
 
-    # def __str__(self):
+    def __str__(self):
+        string = "-----ST-----\n\n"
+        string += "constants\n"
+        for const in self.constants.get_items():
+            string += str(const[0]) + " --> " + str(const[1]) + "\n"
+        string += "\nidentifiers\n"
+        for identifier in self.identifiers.get_items():
+            string += str(identifier[0]) + " --> " + str(identifier[1]) + "\n"
+        return string
 
 # TODO
 #   ask about cases where you have delimiters, such as ";" or ":"

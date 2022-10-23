@@ -39,8 +39,20 @@ class HashTable:
                 return True
         return False
 
+    def get_items(self):
+        all_items = []
+        for i in range(self.size):
+            items = self.items[i]
+            if len(items) != 0:
+                for item in items:
+                    all_items.append(item)
+        return all_items
+
     def __str__(self) -> str:
         representation = ""
         for i in range(self.size):
-            representation += str(i) + "->" + str(self.items[i]) + "\n"
+            items = self.items[i]
+            if len(items) != 0:
+                for item in items:
+                    representation += str(item) + "\n"
         return representation
