@@ -1,0 +1,7 @@
+nr @len is 5;
+str @myString is: <John has 5 apples>;
+check {
+	cond: lengthOf @myString isGreaterOrEqual @len;
+	yes: display <Length is bigger than 5>;
+	no: display <Length is less than 5>;
+}

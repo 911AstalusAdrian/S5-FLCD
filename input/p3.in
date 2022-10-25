@@ -1,0 +1,10 @@
+arr[nr] @my_vec is: <1, 2, 3, 4>;
+nr @count is: 0;
+forElem @el in @my_vec {
+	check {
+cond: @el dividesBy 2;
+yes: increase @count;
+no: goOn;
+}
+}
+display @count;

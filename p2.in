@@ -1,7 +1,0 @@
-nr @len is 5 ;
-str @myString is : <John has 5 apples> ;
-check {
-	cond : lengthOf @myString >= @len ;
-	yes : display <Length is bigger than @len> ;
-	no : display <Length is less than @len> ;
-}

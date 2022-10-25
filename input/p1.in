@@ -1,0 +1,16 @@
+nr @number1 is 4;
+nr @number2 is 5;
+nr @number3 is 6;
+check {
+	cond: @number1 isGreaterOrEqual @number2;
+	yes: check {
+			cond: @number3 isGreaterOrEqual @number1;
+			yes: display @number3;
+			no: display @number1;
+}
+	no: check {
+			cond: @number3 isGreaterOrEqual @number2;
+			yes: display @number3;
+			no: display @number2;
+		}
+}

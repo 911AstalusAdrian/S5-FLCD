@@ -16,8 +16,17 @@ class SymbolTable:
         self.constants = HashTable(41)
         self.identifiers = HashTable(41)
         self.lines = []
-        with open("tokens.txt") as f:
-            self.tokens = [x.strip() for x in f.readlines()]
+        self.tokens_indices = []
+        self.tokens_list = []
+        self.add_tokens()
+
+    def add_tokens(self):
+        count = 0
+        with open("input/tokens.in") as f:
+            for x in f.readlines():
+                self.tokens_indices.append((x.strip(), count))
+                self.tokens_list.append(x.strip())
+                count += 1
 
     def read_file(self, filename):
         with open(filename) as f:
@@ -25,9 +34,22 @@ class SymbolTable:
 
     def parse_file(self):
         for line in self.lines:
-            tokens = line.split(" ")
-            for token in tokens:
-                if token not in self.tokens:
+            idx = -1
+            tokens = list(filter(None, re.split(';| |: |{ | }|\n', line)))
+            print(tokens)
+            for i in range(len(tokens)):
+                if i < idx + 1:
+                    continue
+                token = tokens[i]
+                # print(token)
+                if '<' in token:
+                    for j in range(i, len(tokens)):
+                        token2 = tokens[j]
+                        if '>' in tokens[j]:
+                            new_list = [s.strip("<>") for s in tokens[i:j+1]]
+                            token = " ".join(new_list)
+                            idx = j
+                if token not in self.tokens_list:
                     if is_identifier(token):
                         self.identifiers.insert(token)
                     else:
@@ -42,8 +64,3 @@ class SymbolTable:
         for identifier in self.identifiers.get_items():
             string += str(identifier[0]) + " --> " + str(identifier[1]) + "\n"
         return string
-
-# TODO
-#   ask about cases where you have delimiters, such as ";" or ":"
-#   ex 'cond: @nr > 2;' -> the cond: and the 2;
-#   should we remove the ';' and ':' as well, or workaround putting space in between them
