@@ -36,12 +36,10 @@ class SymbolTable:
         for line in self.lines:
             idx = -1
             tokens = list(filter(None, re.split(';| |: |{ | }|\n', line)))
-            print(tokens)
             for i in range(len(tokens)):
                 if i < idx + 1:
                     continue
                 token = tokens[i]
-                # print(token)
                 if '<' in token:
                     for j in range(i, len(tokens)):
                         token2 = tokens[j]
@@ -56,7 +54,7 @@ class SymbolTable:
                         self.constants.insert(token)
 
     def __str__(self):
-        string = "-----ST-----\n\n"
+        string = "-----ST-----\n"
         string += "constants\n"
         for const in self.constants.get_items():
             string += str(const[0]) + " --> " + str(const[1]) + "\n"
