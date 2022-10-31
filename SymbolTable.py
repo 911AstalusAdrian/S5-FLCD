@@ -1,7 +1,7 @@
 from HashTable import HashTable
 import re
 
-identifier_regex = "^@[a-zA-Z0-9]*$"
+identifier_regex = "^@[a-zA-Z0-9_]*$"
 
 
 def is_identifier(name):
@@ -34,24 +34,54 @@ class SymbolTable:
 
     def parse_file(self):
         for line in self.lines:
-            idx = -1
-            tokens = list(filter(None, re.split(';| |: |{ | }|\n', line)))
+            string_end_index = -1
+            tokens = list(filter(None, re.split(';| |: |,|\n', line)))
             for i in range(len(tokens)):
-                if i < idx + 1:
+                if i < string_end_index + 1:
                     continue
                 token = tokens[i]
-                if '<' in token:
+                if '<' in token: # creating the string constant
                     for j in range(i, len(tokens)):
                         token2 = tokens[j]
                         if '>' in tokens[j]:
                             new_list = [s.strip("<>") for s in tokens[i:j+1]]
                             token = " ".join(new_list)
-                            idx = j
+                            string_end_index = j
+
+                if '[' in token or ']' in token: # remove the paranthesis from numbers in array
+                    token = token.replace("]", "")
+                    token = token.replace("[", "")
                 if token not in self.tokens_list:
                     if is_identifier(token):
                         self.identifiers.insert(token)
                     else:
                         self.constants.insert(token)
+
+    def get_token_index(self, searched_token):
+        for token, index in self.tokens_indices:
+            if searched_token == token:
+                return index
+
+    def get_tokens_indices(self):
+        return self.tokens_indices
+
+    def get_tokens_list(self):
+        return self.tokens_list
+
+    def get_file_lines(self):
+        return self.lines
+
+    def check_constant(self, check):
+        return self.constants.contains(check)
+
+    def get_constant_position(self, const):
+        return self.constants.get_position(const)
+
+    def check_identifier(self, check):
+        return self.identifiers.contains(check)
+
+    def get_identifier_position(self, identif):
+        return self.identifiers.get_position(identif)
 
     def __str__(self):
         string = "-----ST-----\n"
