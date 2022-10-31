@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd8d58e6-ceea-412e-868b-d2ac29bb1ed1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/output/PIF.out" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/output/ST.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PIF.py" beforeDir="false" afterPath="$PROJECT_DIR$/PIF.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +96,7 @@
       <workItem from="1666526137066" duration="278000" />
       <workItem from="1666710915773" duration="6031000" />
       <workItem from="1667196825293" duration="1188000" />
-      <workItem from="1667234957807" duration="4022000" />
+      <workItem from="1667234957807" duration="4769000" />
     </task>
     <servers />
   </component>
@@ -112,6 +115,6 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/flcd_lab$main.coverage" NAME="main Coverage Results" MODIFIED="1667239009308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/flcd_lab$main.coverage" NAME="main Coverage Results" MODIFIED="1667239761850" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

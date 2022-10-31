@@ -13,8 +13,11 @@ class PIF:
         self.tokens_list = self.st.get_tokens_list()
         self.tokens_indices = self.st.get_tokens_indices()
         self.generate_pif()
+        self.export_st()
+        self.export_pif()
 
     def generate_pif(self):
+        line_nr = 1
         for line in self.st.get_file_lines():
             tokens = list(filter(None, re.split(';| |: |{ | }|,|\n', line)))
             for token in tokens:
@@ -25,7 +28,8 @@ class PIF:
                 elif self.is_identifier(token):
                     self.pif.append((self.get_identifier_id(), self.st.get_identifier_position(token)))
                 else:
-                    continue
+                    print("LEXICAL ERROR ON LINE " + str(line_nr))
+            line_nr += 1
 
     def is_constant(self, token_to_check):
         return self.st.check_constant(token_to_check)
@@ -42,6 +46,16 @@ class PIF:
         for token, pos in self.tokens_indices:
             if token == "identif":
                 return pos
+
+    def export_st(self):
+        f = open("output/ST.out", "w")
+        f.write(self.st.__str__())
+        f.close()
+
+    def export_pif(self):
+        f = open("output/PIF.out", "w")
+        f.write(self.__str__())
+        f.close()
 
     def __str__(self):
         string = "------P.I.F.------\n"
