@@ -1,3 +1,5 @@
+import sys
+
 from HashTable import HashTable
 import re
 
@@ -9,6 +11,16 @@ def is_identifier(name):
         return False
     else:
         return True
+
+
+def is_numeric_constant(const):
+    if const.isnumeric():
+        return True
+    elif '-' in const:
+        const = const.replace('-', '')
+        return const.isnumeric
+    else:
+        return False
 
 
 class SymbolTable:
@@ -33,6 +45,7 @@ class SymbolTable:
             self.lines = [x.strip() for x in f.readlines()]
 
     def parse_file(self):
+        line_nr = 1
         for line in self.lines:
             string_end_index = -1
             tokens = list(filter(None, re.split(';| |: |,|\n', line)))
@@ -40,22 +53,28 @@ class SymbolTable:
                 if i < string_end_index + 1:
                     continue
                 token = tokens[i]
-                if '<' in token: # creating the string constant
+                if '<' in token:  # creating the string constant
                     for j in range(i, len(tokens)):
                         token2 = tokens[j]
                         if '>' in tokens[j]:
-                            new_list = [s.strip("<>") for s in tokens[i:j+1]]
+                            new_list = [s.strip("<>") for s in tokens[i:j + 1]]
                             token = " ".join(new_list)
                             string_end_index = j
+                    self.constants.insert(token)
+                    continue
 
-                if '[' in token or ']' in token: # remove the paranthesis from numbers in array
+                if '[' in token or ']' in token:  # remove the paranthesis from numbers in array
                     token = token.replace("]", "")
                     token = token.replace("[", "")
                 if token not in self.tokens_list:
                     if is_identifier(token):
                         self.identifiers.insert(token)
-                    else:
+                    elif is_numeric_constant(token):  # check if is a numerical constant
                         self.constants.insert(token)
+                    else:
+                        print("LEXICAL ERROR ON LINE " + str(line_nr) + " - token " + token + " is the issue")
+                        sys.exit()
+            line_nr += 1
 
     def get_token_index(self, searched_token):
         for token, index in self.tokens_indices:

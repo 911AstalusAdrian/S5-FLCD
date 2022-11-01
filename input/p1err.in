@@ -1,6 +1,6 @@
-nr myNumber is 7;
-check: (
+nr @myNumber is 7;
+check: {
 	cond: myNumber % 2 == 0;
 	yes: display -> myNumber;
 	no: goOn;
-)
+}

@@ -18,18 +18,27 @@ class PIF:
 
     def generate_pif(self):
         line_nr = 1
+        all_good = True
         for line in self.st.get_file_lines():
             tokens = list(filter(None, re.split(';| |: |{ | }|,|\n', line)))
             for token in tokens:
+                if '[' in token or ']' in token:
+                    token = token.replace('[', '')
+                    token = token.replace(']', '')
                 if token in self.tokens_list:
                     self.pif.append((-1, self.st.get_token_index(token)))
                 elif self.is_constant(token):
-                    self.pif.append((self.get_constant_id(), self.st.get_constant_position(token)))
+                    self.pif.append((self.st.get_constant_position(token), self.get_constant_id()))
                 elif self.is_identifier(token):
-                    self.pif.append((self.get_identifier_id(), self.st.get_identifier_position(token)))
+                    self.pif.append((self.st.get_identifier_position(token), self.get_identifier_id()))
                 else:
-                    print("LEXICAL ERROR ON LINE " + str(line_nr))
+                    # print("LEXICAL ERROR ON LINE " + str(line_nr))
+                    all_good = False
             line_nr += 1
+        if all_good:
+            print("NO LEXICAL ERRORS")
+
+
 
     def is_constant(self, token_to_check):
         return self.st.check_constant(token_to_check)
