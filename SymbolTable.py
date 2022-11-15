@@ -1,30 +1,42 @@
 import sys
 
 from HashTable import HashTable
+from automata.FA import FiniteAutomaton
 import re
 
 identifier_regex = "^@[a-zA-Z0-9_]*$"
 
 
-def is_identifier(name):
-    if re.search(identifier_regex, name) is None:
-        return False
-    else:
-        return True
+# def is_identifier(name):
+#     if re.search(identifier_regex, name) is None:
+#         return False
+#     else:
+#         return True
 
 
-def is_numeric_constant(const):
-    if const.isnumeric():
-        return True
-    elif '-' in const:
-        const = const.replace('-', '')
-        return const.isnumeric
-    else:
-        return False
+# def is_numeric_constant(const):
+#     if const.isnumeric():
+#         return True
+#     elif '-' in const:
+#         const = const.replace('-', '')
+#         return const.isnumeric
+#     else:
+#         return False
 
 
 class SymbolTable:
+
+    def is_identifier(self, name):
+        return self.identifier_automata.check_sequence(name)
+
+    def is_numeric_constant(self, const):
+        return self.integer_automata.check_sequence(const)
+
     def __init__(self):
+
+        self.identifier_automata = FiniteAutomaton("automata/identifier_fa.in")
+        self.integer_automata = FiniteAutomaton("automata/integer_fa.in")
+
         self.constants = HashTable(41)
         self.identifiers = HashTable(41)
         self.lines = []
@@ -67,9 +79,9 @@ class SymbolTable:
                     token = token.replace("]", "")
                     token = token.replace("[", "")
                 if token not in self.tokens_list:
-                    if is_identifier(token):
+                    if self.is_identifier(token):
                         self.identifiers.insert(token)
-                    elif is_numeric_constant(token):  # check if is a numerical constant
+                    elif self.is_numeric_constant(token):  # check if is a numerical constant
                         self.constants.insert(token)
                     else:
                         print("LEXICAL ERROR ON LINE " + str(line_nr) + " - token " + token + " is the issue")
