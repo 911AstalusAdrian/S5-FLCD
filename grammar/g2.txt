@@ -1,0 +1,23 @@
+non_terminals = Program StatementList Statement SimpleStatement ComplexStatement Declare Assign Print If For Type SimpleType ArrType Expression Term Factor IndexedIdentifier Condition Relation
+terminals = + - * / == =/= > >= < <= { } [ ] < > ; : is nr str arr check cond yes no display increment decrement divides_by length_of for_elem div mod Identifier StringConstant IntegerConstant
+starting_symbol = Program
+productions =
+    Program -> StatementList
+    StatementList -> Statement; | Statement; StatementList
+    Statement -> SimpleStatement | ComplexStatement
+    SimpleStatement -> Declare | Assign | Print
+    ComplexStatement -> If | For
+    Declare -> Type Identifier is Value
+    Assign -> Identifier is Value
+    Print -> display Identifier | display Value
+    If -> check {cond: Condition; yes: Statement; no: Statement;}
+    For -> for_elem Identifier in Identifier {Statement}
+    Type -> SimpleType | ArrType
+    SimpleType -> nr | str
+    ArrType -> arr[SimpleType]
+    Expression -> Term | Expression + Term | Expression - Term
+    Term -> Factor | Term * Factor | Term / Factor
+    Factor -> (Expression) | Identifier | StringConstant | IntegerConstant | IndexedIdentifier
+    IndexedIdentifier -> Identifier[IntegerConstant]
+    Condition -> Expression Relation Expression
+    Relation -> > | >= | < | <= | == | =/=

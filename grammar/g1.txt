@@ -1,0 +1,7 @@
+non_terminals = S A B
+terminals = a b
+starting_symbol = S
+productions =
+    S -> aB | bA
+    A -> a | aS | bAA
+    B -> b | bS | aBB

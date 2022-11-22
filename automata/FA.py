@@ -1,5 +1,4 @@
-import sys
-from typing import List, Dict, Tuple
+from typing import List
 
 
 class FiniteAutomaton:
@@ -43,7 +42,7 @@ class FiniteAutomaton:
                         t2 = tokens[1].strip(")")
                         transition = (t1, t2)
                         t3 = tokens[3]
-                        if not transition in self.transitions.keys():
+                        if transition not in self.transitions.keys():
                             self.transitions[transition] = [t3]
                         else:
                             self.transitions[transition].append(t3)
