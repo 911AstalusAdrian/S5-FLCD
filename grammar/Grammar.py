@@ -62,15 +62,3 @@ class Grammar:
             if lhs not in self.non_terminals:
                 return "This Grammar is not a CFG"
         return "This Grammar is a CFG"
-
-# TODO: Class Grammar - required operations
-#            -> read a grammar from a file
-#            -> print a set of non-terminals
-#            -> set of terminals
-#            -> set of productions
-#            -> productions for a given non-terminal
-#            -> CFG check
-#        Input Files
-#           -> g1.txt (simple grammar from course/seminar)
-#           -> g2.txt (grammar of the minilanguage)
-#
