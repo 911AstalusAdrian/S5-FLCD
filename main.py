@@ -1,7 +1,5 @@
-from PIF import PIF
-from automata.FA import *
-from SymbolTable import *
 from grammar.Grammar import *
+from lr0_parser.Parser import *
 
 
 def print_menu_fa():
@@ -55,11 +53,8 @@ def grammar_menu(grammar):
 
 if __name__ == "__main__":
     # pif = PIF("input/p1.in")
-
     # fa = FiniteAutomaton("automata/test_fa.in")
     # fa_menu(fa)
 
-    g = Grammar("grammar/g3.txt")
-    print(g)
-
-# TODO: IMPLEMENT LR(O) PARSER
+    g = Grammar("grammar/g1.txt")
+    p = Parser(g)
