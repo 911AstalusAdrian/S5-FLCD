@@ -3,6 +3,8 @@ import numpy as np
 
 
 class Grammar:
+
+    S_PRIME = "SP"
     non_terminals = List[str]
     terminals = List[str]
     starting_symbol = str
@@ -10,6 +12,7 @@ class Grammar:
 
     def __init__(self, filename):
         self.read_file(filename)
+        self.initial_starting_symbol = self.starting_symbol
 
     def __str__(self):
         string = ""
@@ -26,6 +29,33 @@ class Grammar:
                     string += str(rhs)
             string += "\n"
         return string
+
+    def check_if_enhanced(self):
+        # Grammar is not enhanced if the Starting Symbol has more than one Production
+        if len(self.productions[self.starting_symbol]) != 1:
+            return False
+
+        # we check that the Starting Symbol does not appear in any Production rhs
+        for production_rhs in self.productions.values():
+            for each_rhs in production_rhs:
+                if self.starting_symbol in each_rhs:
+                    return False
+
+        return True  # otherwise, we have an enhanced Grammar
+
+    def enhance_grammar(self):
+        if not self.check_if_enhanced():
+            self.non_terminals.append(Grammar.S_PRIME)  # add a new Starting Symbol, S'
+            self.productions[Grammar.S_PRIME] = [self.starting_symbol]
+            self.starting_symbol = Grammar.S_PRIME
+            # self.is_enhanced = True
+
+    def get_production_by_id(self, prod_id: int) -> tuple or None:
+        for prod in self.productions.keys():
+            for prod_value in self.productions[prod]:
+                if isinstance(prod_value[1], int) and prod_value[1] == prod_id:
+                    return prod, prod_value[0]
+        return None
 
     def read_file(self, filename):
         with open(filename, 'r') as f:
