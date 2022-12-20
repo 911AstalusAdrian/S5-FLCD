@@ -1,5 +1,6 @@
 from lr0_parser.Parser import Parser
 from lr0_parser.Grammar import Grammar
+from lr0_parser.ParserOutput import ParserOutput
 
 
 def print_menu_fa():
@@ -53,5 +54,29 @@ def grammar_menu(grammar):
 
 if __name__ == "__main__":
 
-    p = Parser(Grammar("grammar/g1.txt"))
-    print(p.pa)
+    g = Grammar("grammar/g1.txt")
+    g.enhance_grammar()
+    print(g)
+
+    p = Parser(g)
+    p.create_canonical_collection()
+    for state in p.canonical_collection:
+        print(state)
+
+
+    # p.create_parsing_table()
+    # # print(p.parsing_table)
+    #
+    # print("Enter a sequence: ")
+    # # sequence = input()
+    # # output_band = p.parse_sequence(sequence.split(" "))
+    #
+    # output_band = p.parse_sequence(['a', 'b', 'c', 'b'])
+    # print(output_band)
+    #
+    # parserOutput = ParserOutput(output_band, g)
+    # parserOutput.compute_parsing_tree()
+    # for item in parserOutput.parsing_tree:
+    #     print(item)
+    #
+    # parserOutput.print_to_file("out1.txt")

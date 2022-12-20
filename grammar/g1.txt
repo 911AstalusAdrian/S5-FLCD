@@ -3,5 +3,5 @@ terminals = a b c
 starting_symbol = S
 productions =
     S -> aA
+    A -> cb
     A -> bA
-    A -> c

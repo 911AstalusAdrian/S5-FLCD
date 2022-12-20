@@ -45,8 +45,8 @@ class Parser:
                 if closure_item.dot_pos < len(closure_item.rhs) and \
                         closure_item.rhs[closure_item.dot_pos] in self.grammar.non_terminals:
                     for production in self.grammar.productions[closure_item.rhs[closure_item.dot_pos]]:
-                        if not self.is_item_in_closure(Item(closure_item.rhs[closure_item.dot_pos], production[0], 0),
-                                                       current_closure):
+                        if not self.item_in_closure(Item(closure_item.rhs[closure_item.dot_pos], production[0], 0),
+                                                    current_closure):
                             current_closure.append(Item(closure_item.rhs[closure_item.dot_pos], production[0], 0))
 
             if current_closure == old_closure:
@@ -69,7 +69,8 @@ class Parser:
 
     def create_canonical_collection(self):
         self.canonical_collection = [
-            self.closure([Item(self.grammar.starting_symbol, self.grammar.productions[self.grammar.starting_symbol][0], 0)])
+            self.closure(
+                [Item(self.grammar.starting_symbol, self.grammar.productions[self.grammar.starting_symbol][0], 0)])
         ]
 
         index = 0
@@ -175,7 +176,7 @@ class Parser:
             elif self.parsing_table[work_stack[-1]][0] == Action.SHIFT_REDUCE_CONFLICT:
                 possible_symbol = input_stack[-1]
                 if (len(input_stack) == 1 and input_stack[-1] == END_SIGN) or \
-                    possible_symbol not in self.parsing_table[work_stack[-1]][1].keys():
+                        possible_symbol not in self.parsing_table[work_stack[-1]][1].keys():
                     prod_id = self.get_production_number_shift_reduce_conflict(work_stack[-1])
                     prod = self.grammar.get_production_by_id(prod_id)
                     output_band.append(prod_id)

@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd8d58e6-ceea-412e-868b-d2ac29bb1ed1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lr0_parser/Item.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lr0_parser/ParserOutput.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lr0_parser/State.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grammar/Grammar.py" beforeDir="false" afterPath="$PROJECT_DIR$/lr0_parser/Grammar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grammar/g1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/grammar/g1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lr0_parser/Item.py" beforeDir="false" afterPath="$PROJECT_DIR$/lr0_parser/Item.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lr0_parser/Parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/lr0_parser/Parser.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -52,11 +50,11 @@
       <recent name="D:\Uni\FLCD - Formal Languages &amp; Compiler Design\flcd-lab" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Uni\FLCD - Formal Languages &amp; Compiler Design\flcd-lab\lr0_parser" />
       <recent name="D:\Uni\FLCD - Formal Languages &amp; Compiler Design\flcd-lab" />
       <recent name="D:\Uni\FLCD - Formal Languages &amp; Compiler Design\flcd-lab\parser\prs" />
       <recent name="D:\Uni\FLCD - Formal Languages &amp; Compiler Design\flcd-lab\parser" />
       <recent name="D:\Uni\FLCD - Formal Languages &amp; Compiler Design\flcd-lab\automata" />
-      <recent name="D:\Uni\FLCD - Formal Languages &amp; Compiler Design\flcd-lab\input" />
     </key>
   </component>
   <component name="RunManager">
@@ -112,7 +110,9 @@
       <workItem from="1670342919965" duration="1154000" />
       <workItem from="1670791046347" duration="364000" />
       <workItem from="1670947340296" duration="6376000" />
-      <workItem from="1671466411462" duration="7988000" />
+      <workItem from="1671466411462" duration="8005000" />
+      <workItem from="1671482317802" duration="242000" />
+      <workItem from="1671552441878" duration="2748000" />
     </task>
     <servers />
   </component>
@@ -131,6 +131,6 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/flcd_lab$main.coverage" NAME="main Coverage Results" MODIFIED="1671481176714" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/flcd_lab$main.coverage" NAME="main Coverage Results" MODIFIED="1671554031905" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
